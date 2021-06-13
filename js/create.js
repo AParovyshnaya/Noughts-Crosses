@@ -1,15 +1,14 @@
 function whatsField() {
     let field = document.getElementById("select_size").value;
-    console.log("hello");
-    create();
+    create([0, 1, 2], [0, 1, 2]);
 }
 
-function create() {
+function create(lines, inLines) {
     let target = document.getElementById("field");
-    for (let i in [0, 1, 2]) {
+    for (let i in lines) {
         let p = document.createElement("p");
         p.setAttribute("class", "line");
-        for (let i in [0, 1, 2,]) {
+        for (let i in inLines) {
             let square = document.createElement("input");
             square.setAttribute("class", "line");
             square.setAttribute("type", "button");
