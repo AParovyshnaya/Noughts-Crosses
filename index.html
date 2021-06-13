@@ -9,7 +9,7 @@
     window.onload = function () {
       let button = document.getElementById("create");
       button.onclick = function () {
-        hello();
+        create();
       }
     }
   </script>
@@ -21,11 +21,12 @@
      <div>
          <p><lable>Выберите поле:</lable>
             <select  id = "select_size" required>
-                <option value="3">3x3</option>
+                <option value="3x3">3x3</option>
               </select>
               <input id="create" type="button" value="Создать поле">
             </p>
-
+     </div>
+     <div id="field">
      </div>
  </body>
 </html>
