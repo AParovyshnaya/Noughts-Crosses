@@ -6,14 +6,13 @@ function whatsField() {
 function create(lines, inLines) {
     let target = document.getElementById("field");
     for (let i in lines) {
-        let p = document.createElement("p");
-        p.setAttribute("class", "line");
+        let line = document.createElement("div");
+        line.setAttribute("class", "line");
         for (let i in inLines) {
-            let square = document.createElement("input");
-            square.setAttribute("class", "line");
-            square.setAttribute("type", "button");
-            p.appendChild(square);
+            let square = document.createElement("div");
+            square.setAttribute("class", "square");
+            line.appendChild(square);
         }
-        target.appendChild(p);
+        target.appendChild(line);
     }
 }

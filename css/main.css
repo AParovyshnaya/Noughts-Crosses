@@ -30,6 +30,19 @@ div {
 }
 
 #create:hover {
-    background: #C5C5C9
+    background: #C5C5C9;
 }
 
+.line {
+    margin-bottom: -26px;
+}
+
+.square {
+    background: #f6f8fc;
+    border-color: #3C3C3D;
+    border-style: solid;
+    display: inline-block;
+    border-width: 2px;
+    width: 75px;
+	height: 75px;
+}
