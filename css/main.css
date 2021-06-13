@@ -3,6 +3,7 @@ body {
     background: #f6f8fc;
     color: #3C3C3D;
     font-family: 'Open Sans', sans-serif;
+    font-size: 125%;
 }
 
 div {
@@ -16,5 +17,5 @@ div {
 
 #select_size {
     border: none;
-
+    font-size: 75%;
 }
