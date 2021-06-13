@@ -16,6 +16,15 @@ div {
 }
 
 #select_size {
-    border: none;
+    border-color: #3C3C3D;
+    border-width: 1px;
     font-size: 75%;
+}
+
+#create {
+    border-color: #3C3C3D;
+    border-width: 1px;
+    background: white;
+    font-size: 75%;
+    margin-left: 10px;
 }
