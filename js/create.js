@@ -37,7 +37,7 @@ function deleteOld() {
 squares = document.getElementsByClassName("square");
 isFirst = true;
 
-squares.onclick function() {
+squares.onclick = function() {
     if (isFirst) {
         play();
     }
