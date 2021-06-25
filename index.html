@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
- <head>
+
+<head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css\Main.css">
   <title>Noughts and Crosses</title>
-  <script src="js\create.js"></script>
+  <script src="js/create.js"></script>
+  <script src="js/play.js"></script>
   <script lang="js">
     window.onload = function () {
       let button = document.getElementById("create");
       button.onclick = function () {
-        whatsField();
+        size = whatsField();
+        whatsSquare(size);
       }
     }
   </script>
- </head>
- <body>
-     <div>
-        <p><a href="index.html"><img src="images/icon.png" id="icon"></a></p>
-     </div>
-     <div>
-         <p><lable>Выберите поле:</lable>
-            <select  id = "select_size" required>
-                <option value="3x3">3x3</option>
-              </select>
-              <input id="create" type="button" value="Создать поле">
-            </p>
-     </div>
-     <div id="field">
-     </div>
- </body>
+</head>
+
+<body>
+  <div>
+    <p><a href="index.html"><img src="images/icon.png" id="icon"></a></p>
+  </div>
+  <div>
+    <p>
+      <lable>Выберите поле:</lable>
+      <select id="select_size" required>
+        <option value="3x3">3x3</option>
+      </select>
+      <input id="create" type="button" value="Создать поле">
+    </p>
+  </div>
+  <div id="field">
+  </div>
+</body>
+
 </html>
