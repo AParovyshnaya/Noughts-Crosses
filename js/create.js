@@ -3,6 +3,7 @@ function whatsField() {
     if (size == "3x3") {
         create(["0", "1", "2"], ["0", "1", "2"]);
     }
+    return (true)
 }
 
 function create(lines, inLines) {
@@ -15,7 +16,7 @@ function create(lines, inLines) {
         for (let i in inLines) {
             let square = document.createElement("div");
             square.setAttribute("class", "square");
-            square.setAttribute("id", "square"+ iLine + "-"+ i)
+            square.setAttribute("id", "square" + iLine + "-" + i)
             line.appendChild(square);
         }
         target.appendChild(line);
@@ -33,13 +34,3 @@ function deleteOld() {
     body.appendChild(newTarget);
     return newTarget;
 }
-
-squares = document.getElementsByClassName("square");
-isFirst = true;
-
-squares.onclick = function() {
-    if (isFirst) {
-        play();
-    }
-}
-
