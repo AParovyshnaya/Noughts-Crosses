@@ -4,7 +4,7 @@ function whatsSquare(canPlay) {
     for (let square in squares) {
         squares[square].onclick = function (e) {
             console.log('event triggered on element', e, e.target);
-            isGood(e.target);
+            id(e.target);
         };
         console.log("listener added to ", square);
     }
