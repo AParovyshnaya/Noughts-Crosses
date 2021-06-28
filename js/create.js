@@ -8,7 +8,6 @@ function whatsField() {
 
 function create(lines, inLines) {
     let target = deleteOld();
-    console.log(target);
     for (let nubmersline in lines) {
         let line = document.createElement("div");
         line.setAttribute("class", "line");
