@@ -1,34 +1,34 @@
 function whatsSquare(canPlay) {
     let squares = document.querySelectorAll(".square");
-    console.log(squares);
     let turn = "крестика (x)";
     howsTurn(null, turn);
     for (let square in squares) {
         squares[square].onclick = function (e) {
-            console.log('event triggered on element', e, e.target);
-            howsTurn(e.target, turn);
-            if (turn == "крестика (x)") {
-                turn = "нолика (o)";
-            } else {
-                turn = "крестика (x)"
-            }
+            turn = howsTurn(e.target, turn);
         };
-        console.log("listener added to ", square);
     }
 }
 
 function howsTurn(square, turn) {
-    target = document.getElementById("move");
-    target.textContent = "Сейчас ход " + turn;
     if (square != null) {
         drawInTheSquare(square, turn);
+        if (turn == "крестика (x)") {
+            turn = "нолика (o)";
+        } else {
+            turn = "крестика (x)";
+        }
     }
+    target = document.getElementById("move");
+    target.textContent = "Сейчас ход " + turn;
+    return turn;
 }
 
 function drawInTheSquare(square, turn) {
+    let image = document.createElement("img");
     if (turn == "крестика (x)") {
-        square.textContent = "x";
+        image.setAttribute("src", "images/x.svg");
     } else {
-        square.textContent = "o";
+        image.setAttribute("src", "images/o.svg");
     }
+    square.appendChild(image);
 }
