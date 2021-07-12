@@ -42,7 +42,9 @@ function howWin(square) {
     let thisType = getThisType(square);
     if (thisType.length >= 3) {
         let [line, column] = lineAndColumn(square);
-        console.log(line, column);
+        if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8)) {
+            console.log("you win")
+        }
     }
 }
 
@@ -73,4 +75,18 @@ function lineAndColumn(square) {
     let line = id[6];
     let column = id[8];
     return [line, column];
+}
+
+function winInLineOrColumn(thisType, favorit, index) {
+    let goods = 0;
+    for (let number in thisType) {
+        let element = thisType[number];
+        let id = element.getAttribute("id");
+        if (id[index] == favorit) {
+            goods += 1
+        }
+    }
+    if (goods == 3) {
+        return true;
+    }
 }
