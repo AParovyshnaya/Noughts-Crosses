@@ -39,7 +39,10 @@ function drawInTheSquare(square, turn) {
 }
 
 function howWin(square) {
-    getThisType(square);
+    let thisType = getThisType(square);
+    if (thisType.length < 3) {
+        break;
+    }
 }
 
 function getThisType(square) {
@@ -61,4 +64,5 @@ function getThisType(square) {
         }
     }
     console.log(thisType);
+    return thisType;
 }
