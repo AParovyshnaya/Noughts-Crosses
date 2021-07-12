@@ -15,7 +15,7 @@ function create(lines, inLines) {
         for (let i in inLines) {
             let square = document.createElement("div");
             square.setAttribute("class", "square");
-            square.setAttribute("id", "square" + iLine + "-" + i)
+            square.setAttribute("id", "square" + iLine + "-" + i);
             line.appendChild(square);
         }
         target.appendChild(line);
