@@ -44,6 +44,7 @@ function howWin(square) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8) || winInD(thisType)) {
             console.log("you win");
+            congratulation();
         }
     }
 }
@@ -92,7 +93,7 @@ function winInLineOrColumn(thisType, favorit, index) {
 
 function winInD(thisType) {
     let lR = []; // слева направо
-    let rL = []; // справа налево 
+    let rL = []; // справа налево
     for (let number in thisType) {
         let element = thisType[number];
         let [line, column] = lineAndColumn(element);
@@ -111,3 +112,12 @@ function winInD(thisType) {
     }
 }
 
+function congratulation() {
+    deleteField();
+}
+
+function deleteField() {
+    let field = document.getElementById("field");
+    let body = document.getElementsByTagName("body")[0];
+    body.removeChild(field);
+}
