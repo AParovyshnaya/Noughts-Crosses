@@ -114,7 +114,7 @@ function winInD(thisType) {
 
 function congratulation(square) {
     deleteField();
-    console.log(howWin(square));
+    printWin(howWin(square));
 }
 
 function deleteField() {
@@ -130,4 +130,9 @@ function howWin(square) {
     } else {
         return "Победил нолик!";
     }
+}
+
+function printWin(howWin) {
+    let target = document.getElementById("move");
+    target.textContent = howWin;
 }
