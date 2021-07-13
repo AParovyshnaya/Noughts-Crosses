@@ -114,7 +114,7 @@ function winInD(thisType) {
 
 function congratulation(square) {
     deleteField();
-    printWin(howWin(square));
+    printAndWin(howWin(square));
 }
 
 function deleteField() {
@@ -132,7 +132,12 @@ function howWin(square) {
     }
 }
 
-function printWin(howWin) {
+function printAndWin(howWin) {
     let target = document.getElementById("move");
     target.textContent = howWin;
+    let friends = document.createElement("img");
+    friends.setAttribute("src", "images/friends.png");
+    friends.setAttribute("id", "friends");
+    let divImg = document.getElementById("div_friends");
+    divImg.appendChild(friends);
 }
