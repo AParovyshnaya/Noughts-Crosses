@@ -6,7 +6,7 @@ function whatsSquare(canPlay) {
     for (let square in squares) {
         squares[square].onclick = function (e) {
             turn = howsTurn(e.target, turn);
-            howWin(e.target, turn);
+            win(e.target, turn);
             whatsturn += 1;
         };
     }
@@ -38,13 +38,13 @@ function drawInTheSquare(square, turn) {
     square.appendChild(image);
 }
 
-function howWin(square) {
+function win(square) {
     let thisType = getThisType(square);
     if (thisType.length >= 3) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8) || winInD(thisType)) {
             console.log("you win");
-            congratulation();
+            congratulation(square);
         }
     }
 }
@@ -112,12 +112,22 @@ function winInD(thisType) {
     }
 }
 
-function congratulation() {
+function congratulation(square) {
     deleteField();
+    console.log(howWin(square));
 }
 
 function deleteField() {
     let field = document.getElementById("field");
     let body = document.getElementsByTagName("body")[0];
     body.removeChild(field);
+}
+
+function howWin(square) {
+    let type = square.getAttribute("data");
+    if (type == "cross") {
+        return "Победил крестик!";
+    } else {
+        return "Победил нолик!";
+    }
 }
