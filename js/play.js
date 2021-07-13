@@ -91,8 +91,8 @@ function winInLineOrColumn(thisType, favorit, index) {
 }
 
 function winInD(thisType) {
-    let lR = []; //
-    let rL = []; //
+    let lR = []; // слева направо
+    let rL = []; // справа налево 
     for (let number in thisType) {
         let element = thisType[number];
         let [line, column] = lineAndColumn(element);
@@ -110,3 +110,4 @@ function winInD(thisType) {
         return true;
     }
 }
+
