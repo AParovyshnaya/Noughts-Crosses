@@ -34,7 +34,8 @@ div {
 }
 
 .line {
-    margin-bottom: -26px;
+    margin: 0px;
+    height: 75px;
 }
 
 .square {
@@ -43,6 +44,7 @@ div {
     border-style: solid;
     display: inline-block;
     border-width: 2px;
-    width: 75px;
-	height: 75px;
+    width: 71px;
+	height: 71px;
+    margin: 0px;
 }
