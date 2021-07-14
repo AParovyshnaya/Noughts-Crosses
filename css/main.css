@@ -34,8 +34,7 @@ div {
 }
 
 .line {
-    margin-bottom: 0px;
-    height: 75px;
+    margin-bottom: -26px;
 }
 
 .square {
@@ -50,9 +49,4 @@ div {
 
 #friends {
     width: 200px;
-}
-
-.img {
-	margin: 5%;
-	height: 90%;
 }
