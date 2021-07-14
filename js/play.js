@@ -35,7 +35,6 @@ function drawInTheSquare(square, turn) {
         image.setAttribute("src", "images/o.svg");
         square.setAttribute("data", "nolik");
     }
-    square.appendChild(image);
 }
 
 function win(square) {
