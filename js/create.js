@@ -7,7 +7,8 @@ function whatsField() {
 }
 
 function create(lines, inLines) {
-    let target = deleteOld();
+    let target = deleteOld("field");
+    deleteOld("friends");
     for (let nubmersline in lines) {
         let line = document.createElement("div");
         line.setAttribute("class", "line");
@@ -17,22 +18,24 @@ function create(lines, inLines) {
             square.setAttribute("class", "square");
             square.setAttribute("id", "square" + iLine + "-" + i);
             let img = document.createElement("img");
-			img.setAttribute("class", "img");
-			square.appendChild(img);
+            img.setAttribute("class", "img");
+            square.appendChild(img);
             line.appendChild(square);
         }
         target.appendChild(line);
     }
 }
 
-function deleteOld() {
-    let old = document.getElementById("field");
-    let body = document.getElementsByTagName("body")[0];
+function deleteOld(id) {
+    let old = document.getElementById(id);
     if (old != null) {
-        body.removeChild(old);
+        old.parentNode.removeChild(old);
     }
-    let newTarget = document.createElement("div");
-    newTarget.setAttribute("id", "field");
-    body.appendChild(newTarget);
-    return newTarget;
+    if (id == "field") {
+        let newTarget = document.createElement("div");
+        newTarget.setAttribute("id", id);
+        let body = document.getElementsByTagName("body")[0];
+        body.appendChild(newTarget);
+        return newTarget;
+    }
 }
