@@ -16,6 +16,9 @@ function create(lines, inLines) {
             let square = document.createElement("div");
             square.setAttribute("class", "square");
             square.setAttribute("id", "square" + iLine + "-" + i);
+			const img = document.createElement("img");
+			img.setAttribute("class", "img");
+			square.appendChild(img);
             line.appendChild(square);
         }
         target.appendChild(line);

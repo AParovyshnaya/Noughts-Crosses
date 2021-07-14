@@ -35,7 +35,7 @@ div {
 
 .line {
     margin: 0px;
-    height: 75px;
+	height: 75px; /* needs to be hardcoded here show lines together*/
 }
 
 .square {
@@ -47,4 +47,9 @@ div {
     width: 71px;
 	height: 71px;
     margin: 0px;
+}
+
+.img {
+	margin: 5%;
+	height: 90%;
 }

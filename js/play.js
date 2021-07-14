@@ -27,7 +27,7 @@ function howsTurn(square, turn) {
 }
 
 function drawInTheSquare(square, turn) {
-    let image = document.createElement("img");
+    let image = square.children[0];
     if (turn == "крестика (x)") {
         image.setAttribute("src", "images/x.svg");
         square.setAttribute("data", "cross");
@@ -35,7 +35,6 @@ function drawInTheSquare(square, turn) {
         image.setAttribute("src", "images/o.svg");
         square.setAttribute("data", "nolik");
     }
-    square.appendChild(image);
 }
 
 function howWin(square) {
