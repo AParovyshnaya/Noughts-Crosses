@@ -6,7 +6,7 @@ function whatsSquare(canPlay) {
     for (let square in squares) {
         squares[square].onclick = function (e) {
             turn = howsTurn(e.target, turn);
-            howWin(e.target, turn);
+            win(e.target, turn);
             whatsturn += 1;
         };
     }
@@ -38,12 +38,13 @@ function drawInTheSquare(square, turn) {
     square.appendChild(image);
 }
 
-function howWin(square) {
+function win(square) {
     let thisType = getThisType(square);
     if (thisType.length >= 3) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8) || winInD(thisType)) {
             console.log("you win");
+            congratulation(square);
         }
     }
 }
@@ -91,8 +92,8 @@ function winInLineOrColumn(thisType, favorit, index) {
 }
 
 function winInD(thisType) {
-    let lR = []; //
-    let rL = []; //
+    let lR = []; // слева направо
+    let rL = []; // справа налево
     for (let number in thisType) {
         let element = thisType[number];
         let [line, column] = lineAndColumn(element);
@@ -109,4 +110,34 @@ function winInD(thisType) {
     if (lR.length == 3 || rL.length == 3) {
         return true;
     }
+}
+
+function congratulation(square) {
+    deleteField();
+    printAndWin(howWin(square));
+}
+
+function deleteField() {
+    let field = document.getElementById("field");
+    let body = document.getElementsByTagName("body")[0];
+    body.removeChild(field);
+}
+
+function howWin(square) {
+    let type = square.getAttribute("data");
+    if (type == "cross") {
+        return "Победил крестик!";
+    } else {
+        return "Победил нолик!";
+    }
+}
+
+function printAndWin(howWin) {
+    let target = document.getElementById("move");
+    target.textContent = howWin;
+    let friends = document.createElement("img");
+    friends.setAttribute("src", "images/friends.png");
+    friends.setAttribute("id", "friends");
+    let divImg = document.getElementById("div_friends");
+    divImg.appendChild(friends);
 }

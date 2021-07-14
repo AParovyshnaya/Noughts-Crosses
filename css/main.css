@@ -45,6 +45,10 @@ div {
     display: inline-block;
     border-width: 2px;
     width: 71px;
-	height: 71px;
+	  height: 71px;
     margin: 0px;
+}
+
+#friends {
+    width: 200px;
 }
