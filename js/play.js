@@ -114,6 +114,7 @@ function winInD(thisType) {
 function congratulation(square) {
     deleteField();
     printAndWin(howWin(square));
+    newGame("Хотите реванш?");
 }
 
 function deleteField() {
@@ -139,4 +140,14 @@ function printAndWin(howWin) {
     friends.setAttribute("id", "friends");
     let divImg = document.getElementById("div_friends");
     divImg.appendChild(friends);
+}
+
+function newGame(textContent) {
+    let request = document.createElement("p");
+    request.textContent = textContent;
+    let target = document.createElement("div");
+    target.setAttribute("id", "new_game_target");
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(target);
+    target.appendChild(request);
 }
