@@ -118,7 +118,7 @@ function congratulation(square) {
     deleteField();
     if (square==1) {
         printAndWin("У вас ничья!");
-        newGame("Новую игру?");
+        newGame("Быть может, ещё?");
     } else {
         printAndWin(howWin(square));
         newGame("Хотите реванш?");
@@ -153,9 +153,18 @@ function printAndWin(howWin) {
 function newGame(textContent) {
     let request = document.createElement("p");
     request.textContent = textContent;
-    let target = document.createElement("div");
-    target.setAttribute("id", "new_game_target");
+    let button = document.createElement("input");
+    button.setAttribute("type", "button");
+    button.setAttribute("value", "Новая игра");
+    button.setAttribute("id", "new_game");
+    let target_request = document.createElement("div");
+    target_request.setAttribute("id", "new_game_target");
     let body = document.getElementsByTagName("body")[0];
-    body.appendChild(target);
-    target.appendChild(request);
+    body.appendChild(target_request);
+    target_request.appendChild(request);
+    target_request.appendChild(button);
+    button.onclick = function () {
+        size = whatsField();
+        whatsSquare(size);
+      }
 }

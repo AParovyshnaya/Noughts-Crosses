@@ -56,3 +56,10 @@ div {
 	margin: 5%;
 	height: 90%;
 }
+
+#new_game {
+    border-color: #3C3C3D;
+    border-width: 1px;
+    background: white;
+    font-size: 75%;
+}

@@ -9,7 +9,7 @@ function whatsField() {
 function create(lines, inLines) {
     let target = deleteOld("field");
     deleteOld("friends");
-    deleteOld("new_game_target")
+    deleteOld("new_game_target");
     for (let nubmersline in lines) {
         let line = document.createElement("div");
         line.setAttribute("class", "line");
