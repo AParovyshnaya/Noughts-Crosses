@@ -8,6 +8,9 @@ function whatsSquare(canPlay) {
             turn = howsTurn(e.target, turn);
             win(e.target, turn);
             whatsturn += 1;
+            if (whatsturn == 9) {
+                congratulation(1);
+            }
         };
     }
 }
@@ -113,8 +116,13 @@ function winInD(thisType) {
 
 function congratulation(square) {
     deleteField();
-    printAndWin(howWin(square));
-    newGame("Хотите реванш?");
+    if (square==1) {
+        printAndWin("У вас ничья!");
+        newGame("Новую игру?");
+    } else {
+        printAndWin(howWin(square));
+        newGame("Хотите реванш?");
+    }
 }
 
 function deleteField() {
