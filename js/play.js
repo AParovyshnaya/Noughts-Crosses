@@ -45,7 +45,6 @@ function win(square) {
     if (thisType.length >= 3) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8) || winInD(thisType)) {
-            console.log("you win");
             congratulation(square);
         }
     }
