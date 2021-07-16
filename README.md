@@ -1,10 +1,9 @@
 # Noughts-Crosses
-<img src="images/icon">
+<img src="images/icon.png"  width="100px" height= "100px">
 
 <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/> <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"/>
-[![Apache-2.0 License](https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg)](https://github.com/AParovyshnaya/Noughts-Crosses/blob/master/LICENSE)
 
-[![Release](https://img.shields.io/badge/Release-Latest%202.0.0-pink.svg)](https://github.com/AParovyshnaya/Noughts-Crosses/releases/latest)
+[![Apache-2.0 License](https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg)](https://github.com/AParovyshnaya/Noughts-Crosses/blob/master/LICENSE)
 
 https://aparovyshnaya.github.io/Noughts-Crosses/)
 
@@ -18,7 +17,7 @@ https://aparovyshnaya.github.io/Noughts-Crosses/)
 
 По нажатию кнопки создаётся поле из 3-ёх строк (`div-ов`), с тремя клетками (тоже `div-ами`). У каждой "клетки" есть особенное `id`, по которому программа понимает расположение клетки в поле. Например:
 
-<img src="images/README_1">
+<img src="images/README_1.png">
 
 Первое часть `id` — `square` — переводится как "квадрат" с английского. Первая цифра обозначает ряд (строчку), а вторая — колонну (столбец). Исчисление начинается с нуля.
 
