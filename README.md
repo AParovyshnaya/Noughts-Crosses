@@ -5,8 +5,6 @@
 
 [![Apache-2.0 License](https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg)](https://github.com/AParovyshnaya/Noughts-Crosses/blob/master/LICENSE)
 
-https://aparovyshnaya.github.io/Noughts-Crosses/)
-
 ## Что это?
 
 Это классическая игра в крестики-нолики в веб-формате.
