@@ -5,6 +5,9 @@
 
 [![Apache-2.0 License](https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg)](https://github.com/AParovyshnaya/Noughts-Crosses/blob/master/LICENSE)
 
+[![GitHub release](https://img.shields.io/github/release/AParovyshnaya/Noughts-Crosses)](https://GitHub.com/Naereen/StrapDown.js/releases/)
+
+
 ## Что это?
 
 Это классическая игра в крестики-нолики в веб-формате.
