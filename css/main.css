@@ -63,3 +63,11 @@ div {
     background: white;
     font-size: 75%;
 }
+
+hr {
+    color: #C5C5C9;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    width: 100%;
+}
+
