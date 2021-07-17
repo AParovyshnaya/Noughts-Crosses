@@ -35,8 +35,8 @@ function deleteOld(id) {
     if (id == "field") {
         let newTarget = document.createElement("div");
         newTarget.setAttribute("id", id);
-        let body = document.getElementsByTagName("body")[0];
-        body.appendChild(newTarget);
+        let parent = document.getElementById("play_aktivity");
+        parent.appendChild(newTarget);
         return newTarget;
     }
 }

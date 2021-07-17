@@ -126,8 +126,7 @@ function congratulation(square) {
 
 function deleteField() {
     let field = document.getElementById("field");
-    let body = document.getElementsByTagName("body")[0];
-    body.removeChild(field);
+    field.parentNode.removeChild(field);
 }
 
 function howWin(square) {
