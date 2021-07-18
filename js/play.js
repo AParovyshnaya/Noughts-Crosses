@@ -157,8 +157,8 @@ function newGame(textContent) {
     button.setAttribute("id", "new_game");
     let target_request = document.createElement("div");
     target_request.setAttribute("id", "new_game_target");
-    let body = document.getElementsByTagName("body")[0];
-    body.appendChild(target_request);
+    let target = document.getElementById("play_aktivity");
+    target.appendChild(target_request);
     target_request.appendChild(request);
     target_request.appendChild(button);
     button.onclick = function () {
