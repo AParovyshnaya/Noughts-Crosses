@@ -38,6 +38,10 @@ div {
     height: 75px;
 }
 
+.none_margin {
+    margin-bottom: 0px;
+}
+
 .square {
     background: #f6f8fc;
     border-color: #3C3C3D;
@@ -64,10 +68,28 @@ div {
     font-size: 75%;
 }
 
-hr {
-    color: #C5C5C9;
-    margin-bottom: 0px;
-    margin-top: 30px;
-    width: 100%;
+#github_icon {
+    width: 25px;
 }
 
+#footer {
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-top: 5px;
+    font-size: 75%;
+    margin-top: 50px;
+}
+
+.footer_elements {
+    float: left;
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #3C3C3D;
+}
+
+a:hover {
+    text-decoration: underline;
+}
