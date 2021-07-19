@@ -7,6 +7,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/AParovyshnaya/Noughts-Crosses)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 
+[Play online](https://aparovyshnaya.github.io/Noughts-Crosses/)
 
 ## Что это?
 
