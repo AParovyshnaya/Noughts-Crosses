@@ -2,6 +2,8 @@ function whatsField() {
     let size = document.getElementById("select_size").value;
     if (size == "3x3") {
         create(["0", "1", "2"], ["0", "1", "2"]);
+    } else if (size == "19x19") {
+            console.log("Здесь будет поле");
     }
     return (true)
 }
