@@ -1,12 +1,12 @@
-function whatsSquare(canPlay) {
-    let squares = document.querySelectorAll(".square");
+function whatsSquare(classSquare) {
+    let squares = document.querySelectorAll(classSquare);
     let turn = "крестика (x)";
     let whatsturn = 0;
     howsTurn(null, turn);
     for (let square in squares) {
         squares[square].onclick = function (e) {
             turn = howsTurn(e.target, turn);
-            win(e.target, turn);
+            win(e.target, classSquare);
             whatsturn += 1;
             if (whatsturn == 9) {
                 congratulation(1);
@@ -40,8 +40,8 @@ function drawInTheSquare(square, turn) {
     }
 }
 
-function win(square) {
-    let thisType = getThisType(square);
+function win(square, classSquare) {
+    let thisType = getThisType(square, classSquare);
     if (thisType.length >= 3) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 6) || winInLineOrColumn(thisType, column, 8) || winInD(thisType)) {
@@ -50,10 +50,10 @@ function win(square) {
     }
 }
 
-function getThisType(square) {
+function getThisType(square, classSquare) {
     let thisType = [];
     let type = square.getAttribute("data");
-    let all = document.querySelectorAll(".square");
+    let all = document.querySelectorAll(classSquare);
     let length = all.length;
     let whenStop = 0;
     for (let number in all) {

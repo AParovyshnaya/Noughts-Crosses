@@ -1,14 +1,13 @@
 function whatsField() {
     let size = document.getElementById("select_size").value;
     if (size == "3x3") {
-        create(["0", "1", "2"], ["0", "1", "2"]);
+        return create(["0", "1", "2"], ["0", "1", "2"], `square_3`);
     } else if (size == "19x19") {
-        create(["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], ["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`]);
+        return create(["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], ["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], `square_19`);
     }
-    return (true)
 }
 
-function create(lines, inLines) {
+function create(lines, inLines, classSquare) {
     let target = deleteOld("field");
     deleteOld("friends");
     deleteOld("new_game_target");
@@ -18,7 +17,7 @@ function create(lines, inLines) {
         iLine = nubmersline
         for (let i in inLines) {
             let square = document.createElement("div");
-            square.setAttribute("class", "square");
+            square.setAttribute("class", classSquare);
             square.setAttribute("id", "square" + iLine + "-" + i);
             let img = document.createElement("img");
             img.setAttribute("class", "img");
@@ -27,6 +26,7 @@ function create(lines, inLines) {
         }
         target.appendChild(line);
     }
+    return (`.` + classSquare);
 }
 
 function deleteOld(id) {

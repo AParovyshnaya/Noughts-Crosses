@@ -42,7 +42,7 @@ div {
     margin-bottom: 0px;
 }
 
-.square {
+.square_3 {
     background: #f6f8fc;
     border-color: #3C3C3D;
     border-style: solid;
@@ -50,6 +50,16 @@ div {
     border-width: 2px;
     width: 75px;
 	height: 75px;
+}
+
+.square_19 {
+    background: #f6f8fc;
+    border-color: #3C3C3D;
+    border-style: solid;
+    display: inline-block;
+    border-width: 2px;
+    width: 25px;
+	height: 25px;
 }
 
 #friends {
