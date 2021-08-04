@@ -33,9 +33,14 @@ div {
     background: #C5C5C9;
 }
 
-.line {
+.line_3 {
     margin-bottom: 0px;
     height: 75px;
+}
+
+.line_19 {
+    margin-bottom: 0px;
+    height: 25px;
 }
 
 .none_margin {
