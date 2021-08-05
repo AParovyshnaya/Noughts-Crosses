@@ -73,8 +73,9 @@ function getThisType(square, classSquare) {
 
 function lineAndColumn(square) {
     let id = square.getAttribute("id");
-    let line = id[6];
-    let column = id[8];
+    let dash = id.indexOf(`-`);
+    let line = id.substring(`6`, dash);
+    let column = id.substring(dash);
     return [line, column];
 }
 
@@ -115,7 +116,7 @@ function winInD(thisType) {
 
 function congratulation(square) {
     deleteField();
-    if (square==1) {
+    if (square == 1) {
         printAndWin("У вас ничья!");
         newGame("Быть может, ещё?");
     } else {
@@ -164,5 +165,14 @@ function newGame(textContent) {
     button.onclick = function () {
         size = whatsField();
         whatsSquare(size);
-      }
+    }
+}
+
+function aboutNumbers(classSquare) {
+    let size = classSquare.substring(8);
+    if (size == `3`) {
+        return [9, 3]; // Первое - ничья, второе - в if win(), winInD(), winInLineorColumn()
+    } else {
+        return [361, 5];
+    }
 }

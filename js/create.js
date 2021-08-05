@@ -12,7 +12,6 @@ function create(lines, squaresSize) {
     deleteOld("friends");
     deleteOld("new_game_target");
     let [classLine, classSquare] = whatsClass(squaresSize);
-    console.log(classLine);
     for (let nubmersline in lines) {
         let line = document.createElement("div");
         line.setAttribute("class", classLine);
