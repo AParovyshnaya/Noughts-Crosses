@@ -15,6 +15,13 @@ div {
     height: 170px;
 }
 
+#field{
+    border-width: 1px;
+    border-color: #3C3C3D;
+    border-style: solid;
+    width: max-content;
+}
+
 #select_size {
     border-color: #3C3C3D;
     border-width: 1px;
@@ -52,9 +59,9 @@ div {
     border-color: #3C3C3D;
     border-style: solid;
     display: inline-block;
-    border-width: 2px;
-    width: 75px;
-	height: 75px;
+    border-width: 1px;
+    width: 73px;
+	height: 73px;
 }
 
 .square_19 {
@@ -62,9 +69,9 @@ div {
     border-color: #3C3C3D;
     border-style: solid;
     display: inline-block;
-    border-width: 2px;
-    width: 25px;
-	height: 25px;
+    border-width: 1px;
+    width: 23px;
+	height: 23px;
 }
 
 #friends {
