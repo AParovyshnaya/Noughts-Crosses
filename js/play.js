@@ -43,9 +43,10 @@ function drawInTheSquare(square, turn) {
 
 function win(square, classSquare) {
     let thisType = getThisType(square, classSquare);
-    if (thisType.length >= 3) {
+    let inColumn = aboutNumbers(classSquare)[1];
+    if (thisType.length >= inColumn) {
         let [line, column] = lineAndColumn(square);
-        if (winInLineOrColumn(thisType, line, 0) || winInLineOrColumn(thisType, column, 1) || winInD(thisType)) {
+        if (winInLineOrColumn(thisType, line, 0, inColumn) || winInLineOrColumn(thisType, column, 1, inColumn) || winInD(thisType, inColumn)) {
             congratulation(square);
         }
     }
@@ -80,20 +81,21 @@ function lineAndColumn(square) {
     return [line, column];
 }
 
-function winInLineOrColumn(thisType, favorit, lineOrColumn) {
+function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
     let goods = 0;
     for (let number in thisType) {
         let element = thisType[number];
-            if (lineAndColumn(element)[lineOrColumn] == favorit) {
+        if (lineAndColumn(element)[lineOrColumn] == favorit) {
             goods += 1
         }
     }
-    if (goods == 3) {
+    if (goods == threeOr5) {
         return true;
     }
 }
 
-function winInD(thisType) {
+function winInD(thisType, threeOr5) {
+    console.log(threeOr5);
     let lR = []; // слева направо
     let rL = []; // справа налево
     for (let number in thisType) {
@@ -109,7 +111,7 @@ function winInD(thisType) {
             rL.push(element);
         }
     }
-    if (lR.length == 3 || rL.length == 3) {
+    if (lR.length == threeOr5 || rL.length == threeOr5) {
         return true;
     }
 }
