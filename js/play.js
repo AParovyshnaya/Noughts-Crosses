@@ -2,13 +2,14 @@ function whatsSquare(classSquare) {
     let squares = document.querySelectorAll(classSquare);
     let turn = "крестика (x)";
     let whatsturn = 0;
+    let squaresNumber = aboutNumbers(classSquare);
     howsTurn(null, turn);
     for (let square in squares) {
         squares[square].onclick = function (e) {
             turn = howsTurn(e.target, turn);
             win(e.target, classSquare);
             whatsturn += 1;
-            if (whatsturn == 9) {
+            if (whatsturn == squaresNumber) {
                 congratulation(1);
             }
         };
