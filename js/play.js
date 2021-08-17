@@ -77,25 +77,59 @@ function lineAndColumn(square) {
     let id = square.getAttribute("id");
     let dash = id.indexOf(`-`);
     let line = id.substring(`6`, dash);
-    let column = id.substring(dash);
+    let column = id.substring(dash + 1);
     return [line, column];
 }
 
 function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
-    let goods = 0;
+    let numberOfGoods = 0;
+    let goods = [];
     for (let number in thisType) {
         let element = thisType[number];
         if (lineAndColumn(element)[lineOrColumn] == favorit) {
-            goods += 1
+            goods.push(element);
+            numberOfGoods += 1;
         }
     }
-    if (goods == threeOr5) {
-        return true;
+    if (threeOr5 == `3`) {
+        if (numberOfGoods == threeOr5) {
+            return true;
+        }
+    } else {
+        if (numberOfGoods >= threeOr5) {
+            if (lineOrColumn == 0) {
+                return inARow(goods, 1);
+            } else {
+                return inARow(goods, 0);
+            }
+
+        }
+
     }
 }
 
+function inARow(goods, lineOrColumn) {
+    let i = 0;
+    let greats = 0;
+    for (let number in goods) {
+        if (i == 4) {
+            break;
+        }
+        let first = goods[number];
+        let numberLater = parseInt(number, 10);
+        numberLater += 1;
+        numberLater = numberLater.toString(10);
+        let second = goods[numberLater];
+        if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) {
+            greats += 1;
+        }
+        i += 1;
+    }
+    if (greats == 4) {
+        return true;
+    }
+}
 function winInD(thisType, threeOr5) {
-    console.log(threeOr5);
     let lR = []; // слева направо
     let rL = []; // справа налево
     for (let number in thisType) {
