@@ -43,6 +43,7 @@ function drawInTheSquare(square, turn) {
 
 function win(square, classSquare) {
     let thisType = getThisType(square, classSquare);
+    console.log(thisType);
     let inColumn = aboutNumbers(classSquare)[1];
     if (thisType.length >= inColumn) {
         let [line, column] = lineAndColumn(square);
@@ -111,11 +112,14 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
 function inARow(goods, lineOrColumn) {
     let i = 0;
     let greats = 0;
+    let lastNumber = goods.length - 1;
+    lastNumber = lastNumber.toString(10);
+    let lastSquare = goods[lastNumber];
     for (let number in goods) {
-        if (i == 4) {
+        let first = goods[number];
+        if (first == lastSquare) {
             break;
         }
-        let first = goods[number];
         let numberLater = parseInt(number, 10);
         numberLater += 1;
         numberLater = numberLater.toString(10);
