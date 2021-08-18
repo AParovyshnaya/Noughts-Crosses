@@ -110,7 +110,6 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
 }
 
 function inARow(goods, lineOrColumn) {
-    let i = 0;
     let greats = 0;
     let lastNumber = goods.length - 1;
     lastNumber = lastNumber.toString(10);
@@ -127,7 +126,6 @@ function inARow(goods, lineOrColumn) {
         if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) {
             greats += 1;
         }
-        i += 1;
     }
     if (greats == 4) {
         return true;
