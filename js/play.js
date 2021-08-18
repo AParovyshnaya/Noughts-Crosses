@@ -137,18 +137,21 @@ function winInD(thisType, threeOr5) {
     for (let number in thisType) {
         let element = thisType[number];
         let [line, column] = lineAndColumn(element);
-        if (line == 1 && column == 1) {
-            lR.push(element);
-            rL.push(element);
-        } else if (line == column) {
-            lR.push(element);
+        let goodComand = [];
+        let difference = 1;
+        for (let number in thisType) {
+            let candidate = thisType[number];
+            console.log(candidate, `candidate`);
+            if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) {
+                goodComand.push(candidate);
+                difference += 1;
+                console.log(goodComand, `so good!`)
+            }
         }
-        if (line - column == 2 || line - column == -2) {
-            rL.push(element);
+        if (goodComand.length >= threeOr5 - 1) {
+            return true;
         }
-    }
-    if (lR.length == threeOr5 || rL.length == threeOr5) {
-        return true;
+
     }
 }
 
