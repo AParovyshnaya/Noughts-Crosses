@@ -1,3 +1,7 @@
+/**
+ * Узнаёт, какого размера должно быть поле и запускает создание последнего
+ * @returns  {string} класс, к которому принадлежат квадратики
+ */
 function whatsField() {
     let size = document.getElementById("select_size").value;
     if (size == "3x3") {
@@ -6,7 +10,12 @@ function whatsField() {
         return create(["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], `19`);
     }
 }
-
+/**
+ * Создаёт поле
+ * @param {array} lines перечисление номеров линий (или колонн, ведь поле квадратное)
+ * @param {string} squaresSize размер поля с одной стороны
+ * @returns {string} класс, к которому принадлежат квадратики
+ */
 function create(lines, squaresSize) {
     let target = deleteOld("field");
     deleteOld("friends");
@@ -29,7 +38,11 @@ function create(lines, squaresSize) {
     }
     return (`.` + classSquare);
 }
-
+/**
+ * Удаляет объект, к которому указано id
+ * @param {string} id помогает найти объект для удаления
+ * @returns объект, который создали после удаления
+ */
 function deleteOld(id) {
     let old = document.getElementById(id);
     if (old != null) {
@@ -43,7 +56,11 @@ function deleteOld(id) {
         return newTarget;
     }
 }
-
+/**
+ * Определяет названия классов в зависимости от размера
+ * @param {*} squaresSize размер (с одной стороны)
+ * @returns классы для линии и квадратов
+ */
 function whatsClass(squaresSize) {
     if (squaresSize == `3`) {
         return [`line_3`, `square_3`];
