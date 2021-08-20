@@ -39,7 +39,7 @@ function create(lines, squaresSize) {
     return (`.` + classSquare);
 }
 /**
- * Удаляет объект, к которому указано id
+ * Очищает объект, к которому указано id
  * @param {string} id помогает найти объект для удаления
  * @returns объект, который создали после удаления
  */
@@ -58,7 +58,7 @@ function deleteOld(id) {
 }
 /**
  * Определяет названия классов в зависимости от размера
- * @param {*} squaresSize размер (с одной стороны)
+ * @param {string} squaresSize размер (с одной стороны)
  * @returns классы для линии и квадратов
  */
 function whatsClass(squaresSize) {

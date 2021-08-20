@@ -1,11 +1,15 @@
+/**
+ * Определяет, на какой квадрат нажали
+ * @param {string} classSquare класс, к которому относятся квадратики 
+ */
 function whatsSquare(classSquare) {
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 
-        alert(`Вы используете мобильное устройство (телефон или планшет).`);
+    //     alert(`Вы используете мобильное устройство (телефон или планшет). Не бойтесь этого сообщения`);
 
-    } else { 
-        alert(`Вы используете ПК.`); 
-    }
+    // } else { 
+    //     alert(`Вы используете ПК. Не пугайтесь, пожалуйста`); 
+    // }
     let squares = document.querySelectorAll(classSquare);
     let turn = "крестика (x)";
     let whatsturn = 0;
@@ -17,12 +21,17 @@ function whatsSquare(classSquare) {
             win(e.target, classSquare);
             whatsturn += 1;
             if (whatsturn == squaresNumber) {
-                congratulation(1);
+                congratulation(`two win`);
             }
         };
     }
 }
-
+/**
+ * Меняет turn, если указан квадрат и записывает в div turn
+ * @param {HTMLDivElement} square - квадрат, на который нажали
+ * @param {string} turn TextContent div`а, который сообщает пользователям, чей ход
+ * @returns turn
+ */
 function howsTurn(square, turn) {
     if (square != null) {
         drawInTheSquare(square, turn);
@@ -36,7 +45,11 @@ function howsTurn(square, turn) {
     target.textContent = "Сейчас ход " + turn;
     return turn;
 }
-
+/**
+ * Рисует крестик или нолик в квадратике после нажатия
+ * @param {HTMLDivElement} square квадрат, на который нажали
+ * @param {string} turn сообщение для пользователей, говорящее чей ход
+ */
 function drawInTheSquare(square, turn) {
     let image = square.children[0];
     if (turn == "крестика (x)") {
@@ -47,19 +60,27 @@ function drawInTheSquare(square, turn) {
         square.setAttribute("data", "nolik");
     }
 }
-
+/**
+ * Проверяет, не победил ли сейчас человек, наживший на квадратик
+ * @param {HTMLDivElement} square квадратик, на который нажали
+ * @param {string} classSquare класс, к которому принадлежат квадратики на поле
+ */
 function win(square, classSquare) {
     let thisType = getThisType(square, classSquare);
-    console.log(thisType);
     let inColumn = aboutNumbers(classSquare)[1];
     if (thisType.length >= inColumn) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 0, inColumn) || winInLineOrColumn(thisType, column, 1, inColumn) || winInD(thisType, inColumn)) {
-            congratulation(square);
+            congratulation(`one win`);
         }
     }
 }
-
+/**
+ * Находит квадратики этого типа
+ * @param {HTMLDivElement} square клетка
+ * @param {string} classSquare класс, к которому принадлежат все квадратики на поле
+ * @returns массив с div`ами-квадратиками одного типа (крестики/нолики)
+ */
 function getThisType(square, classSquare) {
     let thisType = [];
     let type = square.getAttribute("data");
@@ -80,7 +101,11 @@ function getThisType(square, classSquare) {
     }
     return thisType;
 }
-
+/**
+ * Находит местоположение квадрата
+ * @param {HTMLDivElement} square квадрат (клетка)
+ * @returns координаты: линию и колонну (иссчисляется от нуля)????
+ */
 function lineAndColumn(square) {
     let id = square.getAttribute("id");
     let dash = id.indexOf(`-`);
@@ -88,7 +113,14 @@ function lineAndColumn(square) {
     let column = id.substring(dash + 1);
     return [line, column];
 }
-
+/**
+ * Проверяет, выиграл ли игрок по прямой
+ * @param {array} thisType квадратики этого типа (крестики/нолики)
+ * @param {string} favorit координата, по которой сравнивают клетки, чтобы можно было утверждать: они в одном ряду (по горизонтали/вертикали)
+ * @param {number} lineOrColumn сравниваем в линии или в колонне?
+ * @param {number} threeOr5 нужно три или пять подряд для победы?
+ * @returns если победил - true, иначе - false
+ */
 function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
     let numberOfGoods = 0;
     let goods = [];
@@ -115,7 +147,12 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
 
     }
 }
-
+/**
+ * Здесь проверяется, находится ли клетки рядом с друг другом
+ * @param {array} goods массив клеток, которые стоят в ряду
+ * @param {number} lineOrColumn другой признак. То есть если мы сравнивали в функции выше в колонне, то теперь нам нужно сравнивать, как у них отличается горизанталь
+ * @returns если победил - true, иначе - false
+ */
 function inARow(goods, lineOrColumn) {
     let greats = 0;
     let lastNumber = goods.length - 1;
@@ -138,9 +175,13 @@ function inARow(goods, lineOrColumn) {
         return true;
     }
 }
+/**
+ * Проверяет диагонали
+ * @param {number} thisType массив с клетками этого типа
+ * @param {number} threeOr5 три оли пять должны быть в ряд для победы?
+ * @returns если победил - true, иначе - false
+ */
 function winInD(thisType, threeOr5) {
-    let lR = []; // слева направо
-    let rL = []; // справа налево
     for (let number in thisType) {
         let element = thisType[number];
         let [line, column] = lineAndColumn(element);
@@ -148,11 +189,9 @@ function winInD(thisType, threeOr5) {
         let difference = 1;
         for (let number in thisType) {
             let candidate = thisType[number];
-            console.log(candidate, `candidate`);
             if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) {
                 goodComand.push(candidate);
                 difference += 1;
-                console.log(goodComand, `so good!`)
             }
         }
         if (goodComand.length >= threeOr5 - 1) {
@@ -161,23 +200,32 @@ function winInD(thisType, threeOr5) {
 
     }
 }
-
-function congratulation(square) {
+/**
+ * Удаляет поле, говорит, кто выиграл и предлагает новую игру
+ * @param {string} howMany клетка
+ */
+function congratulation(howMany) {
     deleteField();
-    if (square == 1) {
+    if (howMany == `two win`) {
         printAndWin("У вас ничья!");
         newGame("Быть может, ещё?");
     } else {
-        printAndWin(howWin(square));
+        printAndWin(howWin(howMany));
         newGame("Хотите реванш?");
     }
 }
-
+/**
+ * Удаляет поле
+ */
 function deleteField() {
     let field = document.getElementById("field");
     field.parentNode.removeChild(field);
 }
-
+/**
+ * Говорит, кто выиграл
+ * @param {HTMLDivElement} square 
+ * @returns строчку, где оглашается победивший
+ */
 function howWin(square) {
     let type = square.getAttribute("data");
     if (type == "cross") {
@@ -186,7 +234,10 @@ function howWin(square) {
         return "Победил нолик!";
     }
 }
-
+/**
+ * Выводит картинку и комментирует сиутацию
+ * @param {string} howWin 
+ */
 function printAndWin(howWin) {
     let target = document.getElementById("move");
     target.textContent = howWin;
@@ -196,7 +247,10 @@ function printAndWin(howWin) {
     let divImg = document.getElementById("div_friends");
     divImg.appendChild(friends);
 }
-
+/**
+ * Создаёт кнопку, которая делает новое поле
+ * @param {string} textContent Что будет написано на кнопке
+ */
 function newGame(textContent) {
     let request = document.createElement("p");
     request.textContent = textContent;
@@ -215,7 +269,11 @@ function newGame(textContent) {
         whatsSquare(size);
     }
 }
-
+/**
+ * Помогает определить переменные, которые зависят от размера поля
+ * @param {string} classSquare  класс, к которому принадлежат клетки на поле
+ * @returns массив из двух чисел
+ */
 function aboutNumbers(classSquare) {
     let size = classSquare.substring(8);
     if (size == `3`) {
