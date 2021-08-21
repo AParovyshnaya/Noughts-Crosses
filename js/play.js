@@ -71,7 +71,7 @@ function win(square, classSquare) {
     if (thisType.length >= inColumn) {
         let [line, column] = lineAndColumn(square);
         if (winInLineOrColumn(thisType, line, 0, inColumn) || winInLineOrColumn(thisType, column, 1, inColumn) || winInD(thisType, inColumn)) {
-            congratulation(`one win`);
+            congratulation(square);
         }
     }
 }
@@ -202,7 +202,7 @@ function winInD(thisType, threeOr5) {
 }
 /**
  * Удаляет поле, говорит, кто выиграл и предлагает новую игру
- * @param {string} howMany клетка
+ * @param {*} howMany клетка, если кто-то один выиграл или строчка, если ничья
  */
 function congratulation(howMany) {
     deleteField();
