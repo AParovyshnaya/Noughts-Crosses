@@ -3,13 +3,6 @@
  * @param {string} classSquare класс, к которому относятся квадратики 
  */
 function whatsSquare(classSquare) {
-    // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-
-    //     alert(`Вы используете мобильное устройство (телефон или планшет). Не бойтесь этого сообщения`);
-
-    // } else { 
-    //     alert(`Вы используете ПК. Не пугайтесь, пожалуйста`); 
-    // }
     let squares = document.querySelectorAll(classSquare);
     let turn = "крестика (x)";
     let whatsturn = 0;
