@@ -115,22 +115,22 @@ function lineAndColumn(square) {
  * @returns если победил - true, иначе - false
  */
 function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
-    let numberOfGoods = 0;
-    let goods = [];
+    let numberOfGoods = 0; // сколько подходящих
+    let goods = []; // массив с подходящими
     for (let number in thisType) {
-        let element = thisType[number];
-        if (lineAndColumn(element)[lineOrColumn] == favorit) {
-            goods.push(element);
+        let element = thisType[number]; 
+        if (lineAndColumn(element)[lineOrColumn] == favorit) { // если признак, по которомц мы сравниваем, верен, то...
+            goods.push(element); // ...мы зачисляемего в лигу хороших и обновляем счётчик
             numberOfGoods += 1;
         }
     }
-    if (threeOr5 == `3`) {
+    if (threeOr5 == `3`) { // 3 в ряду проще, так как ширина или длина поля тоже равна 3
         if (numberOfGoods == threeOr5) {
             return true;
         }
-    } else {
+    } else { // а вот у 5 в ряд можно разъединить хороших, поэтому мы проверяем
         if (numberOfGoods >= threeOr5) {
-            if (lineOrColumn == 0) {
+            if (lineOrColumn == 0) { // едины ли они и запускаем проверку по противоположному признаку
                 return inARow(goods, 1);
             } else {
                 return inARow(goods, 0);
@@ -147,7 +147,7 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
  * @returns если победил - true, иначе - false
  */
 function inARow(goods, lineOrColumn) {
-    let greats = 0;
+    let greats = 0; 
     let lastNumber = goods.length - 1;
     lastNumber = lastNumber.toString(10);
     let lastSquare = goods[lastNumber];
