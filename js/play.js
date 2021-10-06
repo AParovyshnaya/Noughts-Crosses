@@ -115,22 +115,22 @@ function lineAndColumn(square) {
  * @returns если победил - true, иначе - false
  */
 function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
-    let numberOfGoods = 0;
-    let goods = [];
+    let numberOfGoods = 0; // сколько подходящих
+    let goods = []; // массив с подходящими
     for (let number in thisType) {
-        let element = thisType[number];
-        if (lineAndColumn(element)[lineOrColumn] == favorit) {
-            goods.push(element);
+        let element = thisType[number]; 
+        if (lineAndColumn(element)[lineOrColumn] == favorit) { // если признак, по которомц мы сравниваем, верен, то...
+            goods.push(element); // ...мы зачисляемего в лигу хороших и обновляем счётчик
             numberOfGoods += 1;
         }
     }
-    if (threeOr5 == `3`) {
+    if (threeOr5 == `3`) { // 3 в ряду проще, так как ширина или длина поля тоже равна 3
         if (numberOfGoods == threeOr5) {
             return true;
         }
-    } else {
+    } else { // а вот у 5 в ряд можно разъединить хороших, поэтому мы проверяем
         if (numberOfGoods >= threeOr5) {
-            if (lineOrColumn == 0) {
+            if (lineOrColumn == 0) { // едины ли они и запускаем проверку по противоположному признаку
                 return inARow(goods, 1);
             } else {
                 return inARow(goods, 0);
@@ -147,24 +147,24 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
  * @returns если победил - true, иначе - false
  */
 function inARow(goods, lineOrColumn) {
-    let greats = 0;
-    let lastNumber = goods.length - 1;
-    lastNumber = lastNumber.toString(10);
+    let greats = 0; // сколько отличных
+    let lastNumber = goods.length - 1; 
+    lastNumber = lastNumber.toString(10); // находим квадратик, от которого отталкиваемся
     let lastSquare = goods[lastNumber];
     for (let number in goods) {
         let first = goods[number];
-        if (first == lastSquare) {
+        if (first == lastSquare) { // если мы уже закончили работу
             break;
         }
         let numberLater = parseInt(number, 10);
         numberLater += 1;
         numberLater = numberLater.toString(10);
         let second = goods[numberLater];
-        if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) {
+        if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) { // сравнение
             greats += 1;
         }
     }
-    if (greats == 4) {
+    if (greats == 4) { // они прошли все испытания
         return true;
     }
 }
@@ -176,18 +176,18 @@ function inARow(goods, lineOrColumn) {
  */
 function winInD(thisType, threeOr5) {
     for (let number in thisType) {
-        let element = thisType[number];
-        let [line, column] = lineAndColumn(element);
-        let goodComand = [];
-        let difference = 1;
+        let element = thisType[number]; 
+        let [line, column] = lineAndColumn(element); // координаты
+        let goodComand = []; // лига хороших
+        let difference = 1; // разница между положением в линии и колонне
         for (let number in thisType) {
-            let candidate = thisType[number];
-            if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) {
+            let candidate = thisType[number]; // кандидат
+            if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) { // сравнение разниц
                 goodComand.push(candidate);
-                difference += 1;
+                difference += 1; 
             }
         }
-        if (goodComand.length >= threeOr5 - 1) {
+        if (goodComand.length >= threeOr5 - 1) { // если команда достаточно большая
             return true;
         }
 
@@ -198,13 +198,13 @@ function winInD(thisType, threeOr5) {
  * @param {*} howMany клетка, если кто-то один выиграл или строчка, если ничья
  */
 function congratulation(howMany) {
-    deleteField();
-    if (howMany == `two win`) {
+    deleteField(); // удаляем игровое поле
+    if (howMany == `two win`) { // ничья или победа
         printAndWin("У вас ничья!");
         newGame("Быть может, ещё?");
     } else {
         printAndWin(howWin(howMany));
-        newGame("Хотите реванш?");
+        newGame("Хотите реванш?"); 
     }
 }
 /**
@@ -221,18 +221,18 @@ function deleteField() {
  */
 function howWin(square) {
     let type = square.getAttribute("data");
-    if (type == "cross") {
-        return "Победил крестик!";
+    if (type == "cross") { // приговор
+        return "Победил крестик!"; 
     } else {
         return "Победил нолик!";
     }
 }
 /**
- * Выводит картинку и комментирует сиутацию
+ * Выводит картинку и комментирует ситуацию
  * @param {string} howWin 
  */
 function printAndWin(howWin) {
-    let target = document.getElementById("move");
+    let target = document.getElementById("move"); // показываем игрокам картинку и итог
     target.textContent = howWin;
     let friends = document.createElement("img");
     friends.setAttribute("src", "images/friends.png");
