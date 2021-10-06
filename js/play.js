@@ -3,17 +3,17 @@
  * @param {string} classSquare класс, к которому относятся квадратики 
  */
 function whatsSquare(classSquare) {
-    let squares = document.querySelectorAll(classSquare);
-    let turn = "крестика (x)";
-    let whatsturn = 0;
-    let squaresNumber = aboutNumbers(classSquare)[0];
+    let squares = document.querySelectorAll(classSquare); // найди квадратики
+    let turn = "крестика (x)"; // чей ход
+    let whatsTurn = 0; // который ход по счёту
+    let squaresNumber = aboutNumbers(classSquare)[0]; // максимальное значение whatsTurn
     howsTurn(null, turn);
     for (let square in squares) {
-        squares[square].onclick = function (e) {
-            turn = howsTurn(e.target, turn);
-            win(e.target, classSquare);
-            whatsturn += 1;
-            if (whatsturn == squaresNumber) {
+        squares[square].onclick = function (e) { // когда кликнули...
+            turn = howsTurn(e.target, turn); // меняем ход и устанавливаем, кто кликнул
+            win(e.target, classSquare); // и проверяем, не победил ли кто-нибудь
+            whatsTurn += 1; // сейчас ход по номеру...
+            if (whatsTurn == squaresNumber) { // не закончилась ли тут игра?
                 congratulation(`two win`);
             }
         };
@@ -27,15 +27,15 @@ function whatsSquare(classSquare) {
  */
 function howsTurn(square, turn) {
     if (square != null) {
-        drawInTheSquare(square, turn);
-        if (turn == "крестика (x)") {
+        drawInTheSquare(square, turn); // нарисуем крестик или нолик
+        if (turn == "крестика (x)") { // поменяем ход на следующий
             turn = "нолика (o)";
         } else {
             turn = "крестика (x)";
         }
     }
-    target = document.getElementById("move");
-    target.textContent = "Сейчас ход " + turn;
+    target = document.getElementById("move"); // даём информацию пользователю
+    target.textContent = "Сейчас ход " + turn; // возращаем главному циклу
     return turn;
 }
 /**
@@ -44,8 +44,8 @@ function howsTurn(square, turn) {
  * @param {string} turn сообщение для пользователей, говорящее чей ход
  */
 function drawInTheSquare(square, turn) {
-    let image = square.children[0];
-    if (turn == "крестика (x)") {
+    let image = square.children[0]; 
+    if (turn == "крестика (x)") { //выбираем нужную картинку
         image.setAttribute("src", "images/x.svg");
         square.setAttribute("data", "cross");
     } else {
@@ -59,12 +59,12 @@ function drawInTheSquare(square, turn) {
  * @param {string} classSquare класс, к которому принадлежат квадратики на поле
  */
 function win(square, classSquare) {
-    let thisType = getThisType(square, classSquare);
-    let inColumn = aboutNumbers(classSquare)[1];
-    if (thisType.length >= inColumn) {
-        let [line, column] = lineAndColumn(square);
+    let thisType = getThisType(square, classSquare); // находим квадратики нужного нам типа (то есть человека, который нажал)
+    let inColumn = aboutNumbers(classSquare)[1]; // сколько на в ряду
+    if (thisType.length >= inColumn) { // если у нас набролось хотя один ряд квадратиков этого типа (иначе проверять бессмысленно)
+        let [line, column] = lineAndColumn(square); // координаты квадратика, который сейчас поставили
         if (winInLineOrColumn(thisType, line, 0, inColumn) || winInLineOrColumn(thisType, column, 1, inColumn) || winInD(thisType, inColumn)) {
-            congratulation(square);
+            congratulation(square); // если выиграл, то идут поздравления
         }
     }
 }
@@ -75,24 +75,24 @@ function win(square, classSquare) {
  * @returns массив с div`ами-квадратиками одного типа (крестики/нолики)
  */
 function getThisType(square, classSquare) {
-    let thisType = [];
-    let type = square.getAttribute("data");
-    let all = document.querySelectorAll(classSquare);
+    let thisType = []; // создаём массив, в который будут засовывать квадратики этого типа 
+    let type = square.getAttribute("data"); // значение типа
+    let all = document.querySelectorAll(classSquare); // находим все-все-все квадратики
     let length = all.length;
-    let whenStop = 0;
+    let whenStop = 0; // устанавливаем счёткик
     for (let number in all) {
         let element = all[number];
         if (element.hasAttribute("data")) {
-            if (element.getAttribute("data") == type) {
+            if (element.getAttribute("data") == type) { // если подходит - забрасываем
                 thisType.push(element);
             }
         }
         whenStop += 1;
-        if (whenStop == length) {
+        if (whenStop == length) { // проверяем счётчик
             break;
         }
     }
-    return thisType;
+    return thisType; // отдаём свою работу
 }
 /**
  * Находит местоположение квадрата
@@ -100,8 +100,8 @@ function getThisType(square, classSquare) {
  * @returns координаты: линию и колонну (иссчисляется от нуля)????
  */
 function lineAndColumn(square) {
-    let id = square.getAttribute("id");
-    let dash = id.indexOf(`-`);
+    let id = square.getAttribute("id"); // id с координатами
+    let dash = id.indexOf(`-`); // смотрим по границе: сначала линия, потом колонна
     let line = id.substring(`6`, dash);
     let column = id.substring(dash + 1);
     return [line, column];
