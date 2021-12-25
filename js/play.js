@@ -4,7 +4,7 @@
  */
 function whatsSquare(classSquare) {
     let squares = document.querySelectorAll(classSquare); // найди квадратики
-    let turn = "крестика (x)"; // чей ход
+    let turn = `крестика (x)`; // чей ход
     let whatsTurn = 0; // который ход по счёту
     let squaresNumber = aboutNumbers(classSquare)[0]; // максимальное значение whatsTurn
     howsTurn(null, turn);
@@ -28,14 +28,14 @@ function whatsSquare(classSquare) {
 function howsTurn(square, turn) {
     if (square != null) {
         drawInTheSquare(square, turn); // нарисуем крестик или нолик
-        if (turn == "крестика (x)") { // поменяем ход на следующий
-            turn = "нолика (o)";
+        if (turn == `крестика (x)`) { // поменяем ход на следующий
+            turn = `нолика (o)`;
         } else {
-            turn = "крестика (x)";
+            turn = `крестика (x)`;
         }
     }
-    target = document.getElementById("move"); // даём информацию пользователю
-    target.textContent = "Сейчас ход " + turn; // возращаем главному циклу
+    target = document.getElementById(`move`); // даём информацию пользователю
+    target.textContent = `Сейчас ход ` + turn; // возращаем главному циклу
     return turn;
 }
 /**
@@ -45,12 +45,12 @@ function howsTurn(square, turn) {
  */
 function drawInTheSquare(square, turn) {
     let image = square.children[0]; 
-    if (turn == "крестика (x)") { //выбираем нужную картинку
-        image.setAttribute("src", "images/x.svg");
-        square.setAttribute("data", "cross");
+    if (turn == `крестика (x)`) { //выбираем нужную картинку
+        image.setAttribute(`src`, `images/x.svg`);
+        square.setAttribute(`data`, `cross`);
     } else {
-        image.setAttribute("src", "images/o.svg");
-        square.setAttribute("data", "nolik");
+        image.setAttribute(`src`, `images/o.svg`);
+        square.setAttribute(`data`, `nolik`);
     }
 }
 /**
@@ -76,14 +76,14 @@ function win(square, classSquare) {
  */
 function getThisType(square, classSquare) {
     let thisType = []; // создаём массив, в который будут засовывать квадратики этого типа 
-    let type = square.getAttribute("data"); // значение типа
+    let type = square.getAttribute(`data`); // значение типа
     let all = document.querySelectorAll(classSquare); // находим все-все-все квадратики
     let length = all.length;
     let whenStop = 0; // устанавливаем счёткик
     for (let number in all) {
         let element = all[number];
-        if (element.hasAttribute("data")) {
-            if (element.getAttribute("data") == type) { // если подходит - забрасываем
+        if (element.hasAttribute(`data`)) {
+            if (element.getAttribute(`data`) == type) { // если подходит - забрасываем
                 thisType.push(element);
             }
         }
@@ -100,7 +100,7 @@ function getThisType(square, classSquare) {
  * @returns координаты: линию и колонну (иссчисляется от нуля)????
  */
 function lineAndColumn(square) {
-    let id = square.getAttribute("id"); // id с координатами
+    let id = square.getAttribute(`id`); // id с координатами
     let dash = id.indexOf(`-`); // смотрим по границе: сначала линия, потом колонна
     let line = id.substring(`6`, dash);
     let column = id.substring(dash + 1);
@@ -200,18 +200,18 @@ function winInD(thisType, threeOr5) {
 function congratulation(howMany) {
     deleteField(); // удаляем игровое поле
     if (howMany == `two win`) { // ничья или победа
-        printAndWin("У вас ничья!");
-        newGame("Быть может, ещё?");
+        printAndWin(`У вас ничья!`);
+        newGame(`Быть может, ещё?`);
     } else {
         printAndWin(howWin(howMany));
-        newGame("Хотите реванш?"); 
+        newGame(`Хотите реванш?`); 
     }
 }
 /**
  * Удаляет поле
  */
 function deleteField() {
-    let field = document.getElementById("field");
+    let field = document.getElementById(`field`);
     field.parentNode.removeChild(field);
 }
 /**
@@ -220,11 +220,11 @@ function deleteField() {
  * @returns строчку, где оглашается победивший
  */
 function howWin(square) {
-    let type = square.getAttribute("data");
-    if (type == "cross") { // приговор
-        return "Победил крестик!"; 
+    let type = square.getAttribute(`data`);
+    if (type == `cross`) { // приговор
+        return `Победил крестик!`; 
     } else {
-        return "Победил нолик!";
+        return `Победил нолик!`;
     }
 }
 /**
@@ -232,12 +232,12 @@ function howWin(square) {
  * @param {string} howWin 
  */
 function printAndWin(howWin) {
-    let target = document.getElementById("move"); // показываем игрокам картинку и итог
+    let target = document.getElementById(`move`); // показываем игрокам картинку и итог
     target.textContent = howWin;
-    let friends = document.createElement("img");
-    friends.setAttribute("src", "images/friends.png");
-    friends.setAttribute("id", "friends");
-    let divImg = document.getElementById("div_friends");
+    let friends = document.createElement(`img`);
+    friends.setAttribute(`src`, `images/friends.png`);
+    friends.setAttribute(`id`, `friends`);
+    let divImg = document.getElementById(`div_friends`);
     divImg.appendChild(friends);
 }
 /**
@@ -245,15 +245,15 @@ function printAndWin(howWin) {
  * @param {string} textContent Что будет написано на кнопке
  */
 function newGame(textContent) {
-    let request = document.createElement("p");
+    let request = document.createElement(`p`);
     request.textContent = textContent;
-    let button = document.createElement("input");
-    button.setAttribute("type", "button");
-    button.setAttribute("value", "Новая игра");
-    button.setAttribute("id", "new_game");
-    let target_request = document.createElement("div");
-    target_request.setAttribute("id", "new_game_target");
-    let target = document.getElementById("play_aktivity");
+    let button = document.createElement(`input`);
+    button.setAttribute("type", `button`);
+    button.setAttribute(`value`, `Новая игра`);
+    button.setAttribute(`id`, `new_game`);
+    let target_request = document.createElement(`div`);
+    target_request.setAttribute(`id`, `new_game_target`);
+    let target = document.getElementById(`play_aktivity`);
     target.appendChild(target_request);
     target_request.appendChild(request);
     target_request.appendChild(button);
