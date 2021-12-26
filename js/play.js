@@ -3,24 +3,17 @@
  * @param {string} classSquare класс, к которому относятся квадратики 
  */
 function whatsSquare(classSquare) {
-    // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-
-    //     alert(`Вы используете мобильное устройство (телефон или планшет). Не бойтесь этого сообщения`);
-
-    // } else { 
-    //     alert(`Вы используете ПК. Не пугайтесь, пожалуйста`); 
-    // }
-    let squares = document.querySelectorAll(classSquare);
-    let turn = "крестика (x)";
-    let whatsturn = 0;
-    let squaresNumber = aboutNumbers(classSquare)[0];
+    let squares = document.querySelectorAll(classSquare); // найди квадратики
+    let turn = `крестика (x)`; // чей ход
+    let whatsTurn = 0; // который ход по счёту
+    let squaresNumber = aboutNumbers(classSquare)[0]; // максимальное значение whatsTurn
     howsTurn(null, turn);
     for (let square in squares) {
-        squares[square].onclick = function (e) {
-            turn = howsTurn(e.target, turn);
-            win(e.target, classSquare);
-            whatsturn += 1;
-            if (whatsturn == squaresNumber) {
+        squares[square].onclick = function (e) { // когда кликнули...
+            turn = howsTurn(e.target, turn); // меняем ход и устанавливаем, кто кликнул
+            win(e.target, classSquare); // и проверяем, не победил ли кто-нибудь
+            whatsTurn += 1; // сейчас ход по номеру...
+            if (whatsTurn == squaresNumber) { // не закончилась ли тут игра?
                 congratulation(`two win`);
             }
         };
@@ -34,15 +27,15 @@ function whatsSquare(classSquare) {
  */
 function howsTurn(square, turn) {
     if (square != null) {
-        drawInTheSquare(square, turn);
-        if (turn == "крестика (x)") {
-            turn = "нолика (o)";
+        drawInTheSquare(square, turn); // нарисуем крестик или нолик
+        if (turn == `крестика (x)`) { // поменяем ход на следующий
+            turn = `нолика (o)`;
         } else {
-            turn = "крестика (x)";
+            turn = `крестика (x)`;
         }
     }
-    target = document.getElementById("move");
-    target.textContent = "Сейчас ход " + turn;
+    target = document.getElementById(`move`); // даём информацию пользователю
+    target.textContent = `Сейчас ход ` + turn; // возращаем главному циклу
     return turn;
 }
 /**
@@ -51,13 +44,13 @@ function howsTurn(square, turn) {
  * @param {string} turn сообщение для пользователей, говорящее чей ход
  */
 function drawInTheSquare(square, turn) {
-    let image = square.children[0];
-    if (turn == "крестика (x)") {
-        image.setAttribute("src", "images/x.svg");
-        square.setAttribute("data", "cross");
+    let image = square.children[0]; 
+    if (turn == `крестика (x)`) { //выбираем нужную картинку
+        image.setAttribute(`src`, `images/x.svg`);
+        square.setAttribute(`data`, `cross`);
     } else {
-        image.setAttribute("src", "images/o.svg");
-        square.setAttribute("data", "nolik");
+        image.setAttribute(`src`, `images/o.svg`);
+        square.setAttribute(`data`, `nolik`);
     }
 }
 /**
@@ -66,12 +59,12 @@ function drawInTheSquare(square, turn) {
  * @param {string} classSquare класс, к которому принадлежат квадратики на поле
  */
 function win(square, classSquare) {
-    let thisType = getThisType(square, classSquare);
-    let inColumn = aboutNumbers(classSquare)[1];
-    if (thisType.length >= inColumn) {
-        let [line, column] = lineAndColumn(square);
+    let thisType = getThisType(square, classSquare); // находим квадратики нужного нам типа (то есть человека, который нажал)
+    let inColumn = aboutNumbers(classSquare)[1]; // сколько на в ряду
+    if (thisType.length >= inColumn) { // если у нас набролось хотя один ряд квадратиков этого типа (иначе проверять бессмысленно)
+        let [line, column] = lineAndColumn(square); // координаты квадратика, который сейчас поставили
         if (winInLineOrColumn(thisType, line, 0, inColumn) || winInLineOrColumn(thisType, column, 1, inColumn) || winInD(thisType, inColumn)) {
-            congratulation(square);
+            congratulation(square); // если выиграл, то идут поздравления
         }
     }
 }
@@ -82,24 +75,24 @@ function win(square, classSquare) {
  * @returns массив с div`ами-квадратиками одного типа (крестики/нолики)
  */
 function getThisType(square, classSquare) {
-    let thisType = [];
-    let type = square.getAttribute("data");
-    let all = document.querySelectorAll(classSquare);
+    let thisType = []; // создаём массив, в который будут засовывать квадратики этого типа 
+    let type = square.getAttribute(`data`); // значение типа
+    let all = document.querySelectorAll(classSquare); // находим все-все-все квадратики
     let length = all.length;
-    let whenStop = 0;
+    let whenStop = 0; // устанавливаем счёткик
     for (let number in all) {
         let element = all[number];
-        if (element.hasAttribute("data")) {
-            if (element.getAttribute("data") == type) {
+        if (element.hasAttribute(`data`)) {
+            if (element.getAttribute(`data`) == type) { // если подходит - забрасываем
                 thisType.push(element);
             }
         }
         whenStop += 1;
-        if (whenStop == length) {
+        if (whenStop == length) { // проверяем счётчик
             break;
         }
     }
-    return thisType;
+    return thisType; // отдаём свою работу
 }
 /**
  * Находит местоположение квадрата
@@ -107,8 +100,8 @@ function getThisType(square, classSquare) {
  * @returns координаты: линию и колонну (иссчисляется от нуля)????
  */
 function lineAndColumn(square) {
-    let id = square.getAttribute("id");
-    let dash = id.indexOf(`-`);
+    let id = square.getAttribute(`id`); // id с координатами
+    let dash = id.indexOf(`-`); // смотрим по границе: сначала линия, потом колонна
     let line = id.substring(`6`, dash);
     let column = id.substring(dash + 1);
     return [line, column];
@@ -122,22 +115,22 @@ function lineAndColumn(square) {
  * @returns если победил - true, иначе - false
  */
 function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
-    let numberOfGoods = 0;
-    let goods = [];
+    let numberOfGoods = 0; // сколько подходящих
+    let goods = []; // массив с подходящими
     for (let number in thisType) {
-        let element = thisType[number];
-        if (lineAndColumn(element)[lineOrColumn] == favorit) {
-            goods.push(element);
+        let element = thisType[number]; 
+        if (lineAndColumn(element)[lineOrColumn] == favorit) { // если признак, по которомц мы сравниваем, верен, то...
+            goods.push(element); // ...мы зачисляемего в лигу хороших и обновляем счётчик
             numberOfGoods += 1;
         }
     }
-    if (threeOr5 == `3`) {
+    if (threeOr5 == `3`) { // 3 в ряду проще, так как ширина или длина поля тоже равна 3
         if (numberOfGoods == threeOr5) {
             return true;
         }
-    } else {
+    } else { // а вот у 5 в ряд можно разъединить хороших, поэтому мы проверяем
         if (numberOfGoods >= threeOr5) {
-            if (lineOrColumn == 0) {
+            if (lineOrColumn == 0) { // едины ли они и запускаем проверку по противоположному признаку
                 return inARow(goods, 1);
             } else {
                 return inARow(goods, 0);
@@ -154,24 +147,24 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
  * @returns если победил - true, иначе - false
  */
 function inARow(goods, lineOrColumn) {
-    let greats = 0;
-    let lastNumber = goods.length - 1;
-    lastNumber = lastNumber.toString(10);
+    let greats = 0; // сколько отличных
+    let lastNumber = goods.length - 1; 
+    lastNumber = lastNumber.toString(10); // находим квадратик, от которого отталкиваемся
     let lastSquare = goods[lastNumber];
     for (let number in goods) {
         let first = goods[number];
-        if (first == lastSquare) {
+        if (first == lastSquare) { // если мы уже закончили работу
             break;
         }
         let numberLater = parseInt(number, 10);
         numberLater += 1;
         numberLater = numberLater.toString(10);
         let second = goods[numberLater];
-        if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) {
+        if (parseInt(lineAndColumn(first)[lineOrColumn], 10) + 1 == parseInt(lineAndColumn(second)[lineOrColumn], 10)) { // сравнение
             greats += 1;
         }
     }
-    if (greats == 4) {
+    if (greats == 4) { // они прошли все испытания
         return true;
     }
 }
@@ -183,18 +176,18 @@ function inARow(goods, lineOrColumn) {
  */
 function winInD(thisType, threeOr5) {
     for (let number in thisType) {
-        let element = thisType[number];
-        let [line, column] = lineAndColumn(element);
-        let goodComand = [];
-        let difference = 1;
+        let element = thisType[number]; 
+        let [line, column] = lineAndColumn(element); // координаты
+        let goodComand = []; // лига хороших
+        let difference = 1; // разница между положением в линии и колонне
         for (let number in thisType) {
-            let candidate = thisType[number];
-            if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) {
+            let candidate = thisType[number]; // кандидат
+            if (Math.abs(lineAndColumn(candidate)[0] - line) == difference && Math.abs(lineAndColumn(candidate)[1] - column) == difference) { // сравнение разниц
                 goodComand.push(candidate);
-                difference += 1;
+                difference += 1; 
             }
         }
-        if (goodComand.length >= threeOr5 - 1) {
+        if (goodComand.length >= threeOr5 - 1) { // если команда достаточно большая
             return true;
         }
 
@@ -205,20 +198,20 @@ function winInD(thisType, threeOr5) {
  * @param {*} howMany клетка, если кто-то один выиграл или строчка, если ничья
  */
 function congratulation(howMany) {
-    deleteField();
-    if (howMany == `two win`) {
-        printAndWin("У вас ничья!");
-        newGame("Быть может, ещё?");
+    deleteField(); // удаляем игровое поле
+    if (howMany == `two win`) { // ничья или победа
+        printAndWin(`У вас ничья!`);
+        newGame(`Быть может, ещё?`);
     } else {
         printAndWin(howWin(howMany));
-        newGame("Хотите реванш?");
+        newGame(`Хотите реванш?`); 
     }
 }
 /**
  * Удаляет поле
  */
 function deleteField() {
-    let field = document.getElementById("field");
+    let field = document.getElementById(`field`);
     field.parentNode.removeChild(field);
 }
 /**
@@ -227,24 +220,24 @@ function deleteField() {
  * @returns строчку, где оглашается победивший
  */
 function howWin(square) {
-    let type = square.getAttribute("data");
-    if (type == "cross") {
-        return "Победил крестик!";
+    let type = square.getAttribute(`data`);
+    if (type == `cross`) { // приговор
+        return `Победил крестик!`; 
     } else {
-        return "Победил нолик!";
+        return `Победил нолик!`;
     }
 }
 /**
- * Выводит картинку и комментирует сиутацию
+ * Выводит картинку и комментирует ситуацию
  * @param {string} howWin 
  */
 function printAndWin(howWin) {
-    let target = document.getElementById("move");
+    let target = document.getElementById(`move`); // показываем игрокам картинку и итог
     target.textContent = howWin;
-    let friends = document.createElement("img");
-    friends.setAttribute("src", "images/friends.png");
-    friends.setAttribute("id", "friends");
-    let divImg = document.getElementById("div_friends");
+    let friends = document.createElement(`img`);
+    friends.setAttribute(`src`, `images/friends.png`);
+    friends.setAttribute(`id`, `friends`);
+    let divImg = document.getElementById(`div_friends`);
     divImg.appendChild(friends);
 }
 /**
@@ -252,15 +245,16 @@ function printAndWin(howWin) {
  * @param {string} textContent Что будет написано на кнопке
  */
 function newGame(textContent) {
-    let request = document.createElement("p");
+    let request = document.createElement(`p`);
     request.textContent = textContent;
-    let button = document.createElement("input");
-    button.setAttribute("type", "button");
-    button.setAttribute("value", "Новая игра");
-    button.setAttribute("id", "new_game");
-    let target_request = document.createElement("div");
-    target_request.setAttribute("id", "new_game_target");
-    let target = document.getElementById("play_aktivity");
+    let button = document.createElement(`input`);
+    button.setAttribute("type", `button`);
+    button.setAttribute(`value`, `Новая игра`);
+    button.setAttribute("class", "button")
+    button.setAttribute(`id`, `new_game`);
+    let target_request = document.createElement(`div`);
+    target_request.setAttribute(`id`, `new_game_target`);
+    let target = document.getElementById(`play_aktivity`);
     target.appendChild(target_request);
     target_request.appendChild(request);
     target_request.appendChild(button);

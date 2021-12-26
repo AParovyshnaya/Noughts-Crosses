@@ -3,11 +3,11 @@
  * @returns  {string} класс, к которому принадлежат квадратики
  */
 function whatsField() {
-    let size = document.getElementById("select_size").value;
-    if (size == "3x3") {
-        return create(["0", "1", "2"], `3`);
+    let size = document.getElementById(`select_size`).value;// выясняем размер поля
+    if (size == `3x3`) { //запускаем создание поля и даём игре класс, к которому принадлежат клетки поля
+        return create([`0`, `1`, `2`], `3`);
     } else if (size == "19x19") {
-        return create(["0", "1", "2", `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], `19`);
+        return create([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`], `19`);
     }
 }
 /**
@@ -17,26 +17,26 @@ function whatsField() {
  * @returns {string} класс, к которому принадлежат квадратики
  */
 function create(lines, squaresSize) {
-    let target = deleteOld("field");
-    deleteOld("friends");
-    deleteOld("new_game_target");
-    let [classLine, classSquare] = whatsClass(squaresSize);
+    let target = deleteOld(`field`); // удаляем старое поле
+    deleteOld(`friends`);
+    deleteOld(`new_game_target`);
+    let [classLine, classSquare] = whatsClass(squaresSize); // даются классы, которые нам нужны здесь
     for (let nubmersline in lines) {
-        let line = document.createElement("div");
-        line.setAttribute("class", classLine);
+        let line = document.createElement(`div`); // создаётся линия, которая потом будет с клетками
+        line.setAttribute(`class`, classLine);
         iLine = nubmersline
         for (let i in lines) {
-            let square = document.createElement("div");
-            square.setAttribute("class", classSquare);
-            square.setAttribute("id", "square" + iLine + "-" + i);
-            let img = document.createElement("img");
-            img.setAttribute("class", "img");
+            let square = document.createElement(`div`); // создаются сами клетки с id
+            square.setAttribute(`class`, classSquare);
+            square.setAttribute(`id`, `square` + iLine + `-` + i);
+            let img = document.createElement(`img`);
+            img.setAttribute(`class`, `img`);
             square.appendChild(img);
             line.appendChild(square);
         }
         target.appendChild(line);
     }
-    return (`.` + classSquare);
+    return (`.` + classSquare); // возращается класс клеток
 }
 /**
  * Очищает объект, к которому указано id
@@ -44,14 +44,14 @@ function create(lines, squaresSize) {
  * @returns объект, который создали после удаления
  */
 function deleteOld(id) {
-    let old = document.getElementById(id);
-    if (old != null) {
+    let old = document.getElementById(id); // находит старое
+    if (old != null) { // проверяет, есть ли оно и только тогда удаляет
         old.parentNode.removeChild(old);
     }
-    if (id == "field") {
-        let newTarget = document.createElement("div");
-        newTarget.setAttribute("id", id);
-        let parent = document.getElementById("play_aktivity");
+    if (id == `field`) { // даёт по необходимости id и родитель забирает подопечного
+        let newTarget = document.createElement(`div`);
+        newTarget.setAttribute(`id`, id);
+        let parent = document.getElementById(`play_aktivity`);
         parent.appendChild(newTarget);
         return newTarget;
     }
@@ -67,4 +67,23 @@ function whatsClass(squaresSize) {
     } else {
         return [`line_19`, `square_19`];
     }
+}
+
+function description(del, div) {
+    if (del%2==1) {
+        createDescription(div);
+    } else {
+        deleteDescription();   
+    }
+}
+function createDescription(div) {
+    let description = document.createElement('div');
+    description.textContent = 'В классической игре для победы надо поставить 3 в ряд или в диагональ свой символ. В 19x19 нужно таких 5.'
+    description.setAttribute("id", "des_how_play")
+    div.appendChild(description);
+}
+
+function deleteDescription() {
+    let victim = document.getElementById("des_how_play")
+    victim.parentNode.removeChild(victim);
 }
