@@ -250,6 +250,7 @@ function newGame(textContent) {
     let button = document.createElement(`input`);
     button.setAttribute("type", `button`);
     button.setAttribute(`value`, `Новая игра`);
+    button.setAttribute("class", "button")
     button.setAttribute(`id`, `new_game`);
     let target_request = document.createElement(`div`);
     target_request.setAttribute(`id`, `new_game_target`);
