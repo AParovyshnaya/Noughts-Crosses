@@ -68,3 +68,22 @@ function whatsClass(squaresSize) {
         return [`line_19`, `square_19`];
     }
 }
+
+function description(del, div) {
+    if (del%2==1) {
+        createDescription(div);
+    } else {
+        deleteDescription();   
+    }
+}
+function createDescription(div) {
+    let description = document.createElement('div');
+    description.textContent = 'В классической игре для победы надо поставить 3 в ряд или в диагональ свой символ. В 19x19 нужно таких 5.'
+    description.setAttribute("id", "des_how_play")
+    div.appendChild(description);
+}
+
+function deleteDescription() {
+    let victim = document.getElementById("des_how_play")
+    victim.parentNode.removeChild(victim);
+}
