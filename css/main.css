@@ -36,7 +36,6 @@ body {
 
 .line_19 {
     margin-bottom: 0px;
-    height: 25px;
 }
 
 .none_margin {
@@ -70,6 +69,7 @@ body {
 .img {
     margin: 5%;
 	height: 90%;
+    vertical-align: baseline;
 }
 
 .button {

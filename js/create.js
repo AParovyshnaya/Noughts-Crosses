@@ -27,7 +27,7 @@ function create(lines, squaresSize) {
         iLine = nubmersline
         for (let i in lines) {
             let square = document.createElement(`div`); // создаются сами клетки с id
-            square.setAttribute(`class`, classSquare+' col-sm');
+            square.setAttribute(`class`, classSquare);
             square.setAttribute(`id`, `square` + iLine + `-` + i);
             let img = document.createElement(`img`);
             img.setAttribute(`class`, `img`);
