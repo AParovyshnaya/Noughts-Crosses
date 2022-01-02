@@ -97,7 +97,7 @@ function getThisType(square, classSquare) {
 /**
  * Находит местоположение квадрата
  * @param {HTMLDivElement} square квадрат (клетка)
- * @returns координаты: линию и колонну (иссчисляется от нуля)????
+ * @returns координаты: линию и колонну 
  */
 function lineAndColumn(square) {
     let id = square.getAttribute(`id`); // id с координатами
@@ -119,7 +119,7 @@ function winInLineOrColumn(thisType, favorit, lineOrColumn, threeOr5) {
     let goods = []; // массив с подходящими
     for (let number in thisType) {
         let element = thisType[number]; 
-        if (lineAndColumn(element)[lineOrColumn] == favorit) { // если признак, по которомц мы сравниваем, верен, то...
+        if (lineAndColumn(element)[lineOrColumn] == favorit) { // если признак, по которому мы сравниваем, верен, то...
             goods.push(element); // ...мы зачисляемего в лигу хороших и обновляем счётчик
             numberOfGoods += 1;
         }
