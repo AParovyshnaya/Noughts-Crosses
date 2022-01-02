@@ -80,6 +80,7 @@ function createDescription(div) {
     let description = document.createElement('div');
     description.textContent = 'В классической игре для победы надо поставить 3 в ряд или в диагональ свой символ. В 19x19 нужно таких 5.'
     description.setAttribute("id", "des_how_play")
+    description.setAttribute("class", "pass")
     div.appendChild(description);
 }
 
