@@ -3,8 +3,10 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="css\bootstrap.min.css">
   <link rel="stylesheet" href="css\main.css">
   <link rel="icon" href="images/glypht.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Noughts and Crosses</title>
   <script src="js/create.js"></script>
   <script src="js/play.js"></script>
@@ -17,7 +19,7 @@
       }
       let buttonHowPlay = document.getElementById("how_play");
       buttonHowPlay.onclick = function () {
-        del+=1
+        del += 1
         let buttonsDiv = document.getElementById("how_play_div")
         description(del, buttonsDiv)
       }
@@ -26,42 +28,55 @@
 </head>
 
 <body>
-  <div>
-    <p><a href="index.html"><img src="images/icon.png" id="icon"></a></p>
+  <div class="container">
+    <div class="row">
+      <a href="index.html"><img src="images/icon.png" id="icon"></a>
+    </div>
   </div>
-  <div id="how_play_div"><input id="how_play" class="button" type="button" value="Как играть?"></div>
-  <div>
-    <p>
-      <lable>Выберите поле:</lable>
-      <select id="select_size" required>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-auto">
+        <lable>Выберите поле:</lable>
+      </div>
+      <div class="col-sm-auto"></div><select id="select_size" required>
         <option value="3x3">классическое (3x3)</option>
         <option value="19x19">бесконечное (19x19)</option>
       </select>
-      <input id="create" class="button" type="button" value="Создать поле">
-    </p>
-  </div>
-  <div id="move">
-  </div>
-  <div id="play_aktivity">
-    <div id="div_friends">
-    </div>
-    <div id="field">
-    </div>
-    <div id="new_game_target">
     </div>
   </div>
-  <div id="footer">
-    <div id="my" class="none_margin">
-      <div class="footer_elements">© 2021 <a href="https://github.com/AParovyshnaya">AParovyshnaya</a> (aka vovremya)
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-auto"><input id="create" class="button" type="button" value="Создать поле"></div>
+      <div id="how_play_div" class="col-sm">
+        <input id="how_play" class="button" type="button" value="Как играть?">
       </div>
-      <div class="footer_elements"><a href="https://github.com/AParovyshnaya/Noughts-Crosses"><img
-            src="images/github.svg" id="github_icon"></a></div>
-      <div class="footer_elements"><a href="https://spdx.org/licenses/Apache-2.0.html">Лицензия</a></div>
-      <div class="footer_elements"><a href="https://github.com/AParovyshnaya/Noughts-Crosses/issues/new">Ошибка или
-          пожелание?</a></div>
     </div>
-    <div id="not_my">
-      <div class="footer_elements"><a href="https://fonts.google.com/specimen/Open+Sans#about">Шрифт сделан Стивом
+  </div>
+  <div class="container">
+    <div id="move" class="row">
+    </div>
+  </div>
+  <div id="play_aktivity" class="container">
+    <div id="div_friends" class="row">
+    </div>
+    <div id="field" class="row">
+    </div>
+    <div id="new_game_target" class="row">
+    </div>
+  </div>
+  <div id="footer" class="container">
+    <div id="my" class="none_margin row">
+      <div class="footer_elements col-sm">© 2021 <a href="https://github.com/AParovyshnaya">AParovyshnaya</a> (aka
+        vovremya)
+      </div>
+      <div class="footer_elements col-sm"><a href="https://github.com/AParovyshnaya/Noughts-Crosses"><img
+            src="images/github.svg" id="github_icon"></a></div>
+      <div class="footer_elements col-sm"><a href="https://spdx.org/licenses/Apache-2.0.html">Лицензия</a></div>
+      <div class="footer_elements col-sm"><a href="https://github.com/AParovyshnaya/Noughts-Crosses/issues/new">Ошибка
+          или
+          пожелание?</a></div>
+      <div class="footer_elements col-sm"><a href="https://fonts.google.com/specimen/Open+Sans#about">Шрифт сделан
+          Стивом
           Матессоном</a></div>
     </div>
   </div>

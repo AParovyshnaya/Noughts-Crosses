@@ -23,7 +23,7 @@ function create(lines, squaresSize) {
     let [classLine, classSquare] = whatsClass(squaresSize); // даются классы, которые нам нужны здесь
     for (let nubmersline in lines) {
         let line = document.createElement(`div`); // создаётся линия, которая потом будет с клетками
-        line.setAttribute(`class`, classLine);
+        line.setAttribute(`class`, classLine+' row');
         iLine = nubmersline
         for (let i in lines) {
             let square = document.createElement(`div`); // создаются сами клетки с id
