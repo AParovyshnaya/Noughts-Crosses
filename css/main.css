@@ -15,7 +15,7 @@ body {
 }
 
 #field{
-    border-width: 1px;
+    border-width: 0px;
     border-color: #3C3C3D;
     border-style: solid;
     width: max-content;
@@ -119,4 +119,8 @@ a:hover {
 .p {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.pass {
+    margin-bottom: 10px;
 }
