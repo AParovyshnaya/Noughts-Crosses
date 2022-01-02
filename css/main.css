@@ -15,7 +15,7 @@ body {
 }
 
 #field{
-    border-width: 1px;
+    border-width: 0px;
     border-color: #3C3C3D;
     border-style: solid;
     width: max-content;
