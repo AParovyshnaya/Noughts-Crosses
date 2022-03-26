@@ -153,9 +153,6 @@ function inARow(goods, lineOrColumn) {
     let lastSquare = goods[lastNumber];
     for (let number in goods) {
         let first = goods[number];
-        if (first == lastSquare) { // если мы уже закончили работу
-            break;
-        }
         let numberLater = parseInt(number, 10);
         numberLater += 1;
         numberLater = numberLater.toString(10);
